@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c44e8d10-fc42-4fe6-96b4-d6d39588b9b9" name="Changes" comment="get token request">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/config/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/spec/Specifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildConfigurationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildTypeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -60,7 +61,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="BuildConfigurationTest.buildConfigurationTest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="BuildTypeTest.buildConfigurationTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="teamcity-workshop-framework" />
       <extension name="coverage">
         <pattern>
@@ -69,7 +70,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.teamcity.api" />
-      <option name="MAIN_CLASS_NAME" value="com.example.teamcity.api.BuildConfigurationTest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.teamcity.api.BuildTypeTest" />
       <option name="METHOD_NAME" value="buildConfigurationTest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
@@ -80,7 +81,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.BuildConfigurationTest.buildConfigurationTest" />
+        <item itemvalue="TestNG.BuildTypeTest.buildConfigurationTest" />
       </list>
     </recent_temporary>
   </component>
@@ -122,16 +123,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="get token request" />
     <option name="LAST_COMMIT_MESSAGE" value="get token request" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/teamcity/api/spec/Specifications.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
