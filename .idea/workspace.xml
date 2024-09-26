@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c44e8d10-fc42-4fe6-96b4-d6d39588b9b9" name="Changes" comment="get token request">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/teamcity/api/BuildTypeTest.java" afterDir="false" />
+    <list default="true" id="c44e8d10-fc42-4fe6-96b4-d6d39588b9b9" name="Changes" comment="created first test cases">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/enums/Endpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/BaseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/BuildType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/Step.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/Steps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/requests/CrudInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/requests/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/teamcity/api/models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -47,15 +54,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.teamcity.api.models" />
+      <recent name="com.example.teamcity.api.enums" />
+      <recent name="com.example.teamcity.api.requests" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -103,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727223297285</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="created first test cases">
+      <created>1727307053060</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727307053060</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +140,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="get token request" />
-    <option name="LAST_COMMIT_MESSAGE" value="get token request" />
+    <MESSAGE value="created first test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="created first test cases" />
   </component>
 </project>
