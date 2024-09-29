@@ -19,7 +19,7 @@ public class Specifications {
         return requestBuilder;
     }
 
-    public static RequestSpecification superUserAuth() {
+    public static RequestSpecification superUserSpec() {
         var requestBuilder = reqBuilder();
         requestBuilder.setBaseUri("http://%s:%s@%s:%s".formatted(
                 "",
@@ -38,13 +38,15 @@ public class Specifications {
         return requestBuilder.build();
     }
 
-    public RequestSpecification authSpec(User user) {
+    public static RequestSpecification authSpec(User user) {
         var requestBuilder = reqBuilder();
         requestBuilder.setBaseUri("http://%s:%s@%s:%s".formatted(
                 user.getUsername(),
                 user.getPassword(),
                 Config.getProperty("host"),
-                Config.getProperty("port")));
+                Config.getProperty("port")))
+                .setContentType(ContentType.JSON)
+                .setAccept(ContentType.JSON);
         return requestBuilder.build();
     }
 }
