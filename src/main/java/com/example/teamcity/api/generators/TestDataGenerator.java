@@ -104,7 +104,9 @@ public final class TestDataGenerator {
         }
     }
 
-    // Метод, чтобы сгенерировать одну сущность. Передает пустой параметр generatedModels
+    /**
+     * Метод, чтобы сгенерировать одну сущность. Передает пустой параметр generatedModels
+     */
     public static <T extends BaseModel> T generate(Class<T> generatorClass, Object... parameters) {
         return generate(Collections.emptyList(), generatorClass, parameters);
     }
