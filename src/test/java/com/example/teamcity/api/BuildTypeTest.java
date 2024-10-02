@@ -2,6 +2,8 @@ package com.example.teamcity.api;
 
 import com.example.teamcity.api.models.BuildType;
 import com.example.teamcity.api.models.Project;
+import com.example.teamcity.api.models.Roles;
+import com.example.teamcity.api.models.User;
 import com.example.teamcity.api.requests.CheckedRequests;
 import com.example.teamcity.api.requests.unchecked.UncheckedBase;
 import com.example.teamcity.api.spec.Specifications;
@@ -22,6 +24,7 @@ public class BuildTypeTest extends BaseApiTest{
     public void userCreatesBuildTypeTest() {
 
         supperUserCheckedRequests.getRequest(USERS).create(testData.getUser());
+
         var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
 
         userCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
@@ -37,7 +40,7 @@ public class BuildTypeTest extends BaseApiTest{
     public void userCreatesTwoBuildTypesWithTheSameIdTest() {
         var buildTypeWithSameId = generate(Arrays.asList(testData.getProject()), BuildType.class, testData.getBuildType().getId());
 
-        supperUserCheckedRequests.getRequest(USERS).create(testData.getUser());
+        supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
         var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
 
         userCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
@@ -50,11 +53,17 @@ public class BuildTypeTest extends BaseApiTest{
     }
     @Test(description = "Project admin should be able to create build type for their project", groups = {"Positive", "Roles"})
     public void projectAdminCreatesBuildTypeTest() {
-        step("Create user");
-        step("Create project");
-        step("Grant user PROJECT_ADMIN role in project");
-        step("Create buildType for project by PROJECT_ADMIN user");
-        step("Check buildType was created successfully");
+        supperUserCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
+
+        testData.getUser().setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + testData.getProject().getId()));
+
+        supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
+        var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
+
+        userCheckedRequests.getRequest(BUILD_TYPES).create(testData.getBuildType());
+        var createdBuildType = userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).read(testData.getBuildType().getId());
+
+        softy.assertEquals(testData.getBuildType().getName(), createdBuildType.getName(), "Build type name is not correct");
     }
 
     @Test(description = "Project admin should not be able to create build type for another project", groups = {"Negative", "Roles"})

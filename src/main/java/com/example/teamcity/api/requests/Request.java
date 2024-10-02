@@ -5,8 +5,8 @@ import io.restassured.specification.RequestSpecification;
 
 public class Request {
     /**
-     * Request - это класс, описывающий меняющиеся параметры запроса такие как:
-     * спецификация, эндпоинт (relative URL, model)
+     * Request - это класс, который хранит в себе описание меняющихся от запроса к запросу параметров, таких как:
+     * спецификация - информация, кто делает запрос, какой юзер, эндпоинт (relative URL, model), DTO - в которую мы хотим сериализовать даннве в итоге
      */
     protected final RequestSpecification spec;
     protected final Endpoint endpoint;

@@ -33,8 +33,6 @@ public class Specifications {
 
     public static RequestSpecification unauthSpec() {
         var requestBuilder = reqBuilder();
-        requestBuilder.setContentType(ContentType.JSON);
-        requestBuilder.setAccept(ContentType.JSON);
         return requestBuilder.build();
     }
 
