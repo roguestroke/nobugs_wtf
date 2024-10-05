@@ -15,7 +15,6 @@ import java.util.Arrays;
 
 import static com.example.teamcity.api.enums.Endpoint.*;
 import static com.example.teamcity.api.generators.TestDataGenerator.generate;
-import static io.qameta.allure.Allure.step;
 
 @Test(groups = {"Regression"})
 public class BuildTypeTest extends BaseApiTest{
@@ -23,13 +22,13 @@ public class BuildTypeTest extends BaseApiTest{
     @Test(description = "User should be able to create build type", groups = {"Positive", "CRUD" })
     public void userCreatesBuildTypeTest() {
 
-        supperUserCheckedRequests.getRequest(USERS).create(testData.getUser());
+        supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
 
         var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
 
         userCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
 
-        userCheckedRequests.getRequest(BUILD_TYPES).create(testData.getBuildType());
+        userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).create(testData.getBuildType());
 
         var createdBuildType = userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).read(testData.getBuildType().getId());
 
@@ -45,7 +44,7 @@ public class BuildTypeTest extends BaseApiTest{
 
         userCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
 
-        userCheckedRequests.getRequest(BUILD_TYPES).create(testData.getBuildType());
+        userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).create(testData.getBuildType());
         new UncheckedBase(Specifications.authSpec(testData.getUser()), BUILD_TYPES)
                 .create(buildTypeWithSameId)
                 .then().assertThat().statusCode(HttpStatus.SC_BAD_REQUEST)
@@ -60,7 +59,7 @@ public class BuildTypeTest extends BaseApiTest{
         supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
         var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
 
-        userCheckedRequests.getRequest(BUILD_TYPES).create(testData.getBuildType());
+        userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).create(testData.getBuildType());
         var createdBuildType = userCheckedRequests.<BuildType>getRequest(BUILD_TYPES).read(testData.getBuildType().getId());
 
         softy.assertEquals(testData.getBuildType().getName(), createdBuildType.getName(), "Build type name is not correct");
@@ -68,13 +67,20 @@ public class BuildTypeTest extends BaseApiTest{
 
     @Test(description = "Project admin should not be able to create build type for another project", groups = {"Negative", "Roles"})
     public void projectAdminCreatesBuildTypeForAnotherUserProjectTest() {
-        step("Create user1");
-        step("Create project1");
-        step("Grant user1 PROJECT_ADMIN role in project1");
-        step("Create user2");
-        step("Create project2");
-        step("Grant user2 PROJECT_ADMIN role in project2");
-        step("Create buildType for project1 by user2");
-        step("Check buildType was not created with forbidden code");
+        var userTestData2 = generate(User.class);
+        var projectTestData2 = generate(Project.class);
+
+        supperUserCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
+        supperUserCheckedRequests.<Project>getRequest(PROJECTS).create(projectTestData2);
+
+        testData.getUser().setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + testData.getProject().getId()));
+        userTestData2.setRoles(generate(Roles.class, "PROJECT_ADMIN", "p:" + projectTestData2.getId()));
+
+        var user2 = supperUserCheckedRequests.<User>getRequest(USERS).create(userTestData2);
+        supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
+
+        new UncheckedBase(Specifications.authSpec(user2), BUILD_TYPES)
+                .create(testData.getBuildType())
+                .then().assertThat().statusCode(HttpStatus.SC_UNAUTHORIZED);
     }
 }
