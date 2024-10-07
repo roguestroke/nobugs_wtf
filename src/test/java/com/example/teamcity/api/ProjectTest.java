@@ -25,6 +25,7 @@ public class ProjectTest extends BaseApiTest {
         softy.assertEquals(testData.getProject().getId(), createdProject.getId(), "Project Id is not correct");
     }
 
+    @Test(description = "User successfully read project name", groups = {"Positive", "CRUD"})
     public void userGetsProjectTest() {
 
         supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
@@ -38,6 +39,7 @@ public class ProjectTest extends BaseApiTest {
         softy.assertEquals(createdProjectName, testData.getProject().getName(), "Project name is not correct");
     }
 
+    @Test(description = "User successfully updates project name and description", groups = {"Positive", "CRUD"}, enabled = false)
     public void userUpdatesProjectNameAndDescriptionTest() {
 
         supperUserCheckedRequests.<User>getRequest(USERS).create(testData.getUser());
@@ -45,8 +47,6 @@ public class ProjectTest extends BaseApiTest {
         var userCheckedRequests = new CheckedRequests(Specifications.authSpec(testData.getUser()));
 
         var createdProject = userCheckedRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
-
-
     }
 
     @Test(description = "User successfully deletes project", groups = {"Positive", "CRUD"})
